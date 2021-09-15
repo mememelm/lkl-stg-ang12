@@ -15,6 +15,6 @@ export class ControllerService {
     public router: Router,
     public routes: RoutesExt,
     public api: ApiClientService,
-    public auth: AuthService
+    public auth: AuthService,
   ) { }
 }

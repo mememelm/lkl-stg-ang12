@@ -1,3 +1,4 @@
+import { ENV } from './../constants/classes/env-variables';
 import { ControllerService } from './controller.service';
 import { Injectable } from '@angular/core';
 import {
@@ -22,6 +23,10 @@ export class AuthInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    let init = this.ctrl.storage.init()
+    init == '_I' && !this.ctrl.storage.token()
+      ? this.auth = 'Basic ' + ENV.BASIC_AUTH
+      : this.auth = 'Bearer ' + this.ctrl.storage.token()
     request = request.clone({
       setHeaders: {
         'Authorization': <string>this.auth,
@@ -34,8 +39,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   public handleError(error: HttpErrorResponse) {
     if (error.status === 401) {
-      this.router.navigate([this.ctrl.routes.login])
-      location.reload()
+      // this.router.navigate([this.ctrl.routes.login])
+      // location.reload()
     }
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {

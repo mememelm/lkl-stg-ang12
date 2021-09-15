@@ -1,4 +1,4 @@
-export function buildParams(params: Array<[string, string]>): string {
+export function buildParameters(params: Array<[string, string]>): string {
   let r = ''
   if (params === null) {
     return r
