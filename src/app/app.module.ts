@@ -6,12 +6,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { BackButtonDisableModule } from 'angular-disable-browser-back-button'
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +27,8 @@ import { AppComponent } from './app.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

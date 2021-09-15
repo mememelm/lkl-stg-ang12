@@ -5,6 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class RoutesExt {
 
-  public login = '/login'
+  public login = 'login'
+  public dashboard = 'dashboard'
 
 }
