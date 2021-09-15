@@ -1,6 +1,7 @@
+import { AuthInterceptor } from './services/auth.interceptor';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +22,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     RouterModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

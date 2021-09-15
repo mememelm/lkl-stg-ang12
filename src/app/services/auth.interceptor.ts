@@ -1,3 +1,4 @@
+import { ControllerService } from './controller.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -8,13 +9,17 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from "rxjs/operators";
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   public auth: string | undefined
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private ctrl: ControllerService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({
@@ -28,10 +33,11 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   public handleError(error: HttpErrorResponse) {
-    let errorMessage = ''
     if (error.status === 401) {
-
+      this.router.navigate([this.ctrl.routes.login])
+      location.reload()
     }
+    let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`
     } else {
