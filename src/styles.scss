@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
+
+@include mat.core();
+
+$e-voyage12-primary: mat.define-palette(mat.$indigo-palette);
+$e-voyage12-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$e-voyage12-warn: mat.define-palette(mat.$red-palette);
+
+$e-voyage12-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $e-voyage12-primary,
+      accent: $e-voyage12-accent,
+      warn: $e-voyage12-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($e-voyage12-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

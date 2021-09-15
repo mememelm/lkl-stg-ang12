@@ -9,7 +9,7 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -24,9 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let init = this.ctrl.storage.init()
-    init == '_I' && !this.ctrl.storage.token()
-      ? this.auth = 'Basic ' + ENV.BASIC_AUTH
-      : this.auth = 'Bearer ' + this.ctrl.storage.token()
+    init ? this.auth = 'Basic ' + ENV.BASIC_AUTH : this.auth = 'Bearer ' + this.ctrl.storage.token()
     request = request.clone({
       setHeaders: {
         'Authorization': <string>this.auth,
@@ -34,14 +32,10 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     })
     return next.handle(request)
-      .pipe(retry(1), catchError(this.handleError))
+      .pipe(catchError(this.handleError))
   }
 
   public handleError(error: HttpErrorResponse) {
-    if (error.status === 401) {
-      // this.router.navigate([this.ctrl.routes.login])
-      // location.reload()
-    }
     let errorMessage = ''
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
 import { RoutesExt } from '../routes/routes';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,7 @@ export class ControllerService {
     public routes: RoutesExt,
     public api: ApiClientService,
     public auth: AuthService,
+    public fb: FormBuilder
   ) { }
+
 }
