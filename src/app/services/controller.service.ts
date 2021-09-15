@@ -3,7 +3,7 @@ import { ApiClientService } from './api-client.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
-import { RoutesExt } from '../routes/Routes';
+import { RoutesExt } from '../routes/routes';
 
 @Injectable({
   providedIn: 'root'
