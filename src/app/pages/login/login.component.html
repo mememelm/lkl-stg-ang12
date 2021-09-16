@@ -1,5 +1,16 @@
-<form [formGroup]="loginForm">
-  <input type="text" formControlName="username">
-  <input type="password" formControlName="password">
-  <button (click)="login()">SE CONNECTER</button>
-</form>
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+  <div>E - <span>Voyage</span></div>
+</div>
+<br>
+<div class="login" [formGroup]="loginForm">
+  <input matInput class="login-input" type="text" placeholder="Email *" formControlName="email">
+  <input matInput class="login-input margin-t" type="password" placeholder="Mot de passe *" formControlName="password">
+  <input class="login-button margin-t" type="button" value="Se connecter">
+  <br>
+  <mat-label class="cp-label">
+    Copyright ©
+    <a href="https://relia-consulting.com/" target="_blank">E-Voyage</a> {{currentYear.getFullYear()}}
+  </mat-label>
+</div>

@@ -11,11 +11,12 @@ import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup
+  currentYear = new Date()
 
   constructor(public ctrl: ControllerService) { }
 
-  get username(): AbstractControl | null {
-    return this.loginForm.get('username')
+  get emai(): AbstractControl | null {
+    return this.loginForm.get('emai')
   }
 
   get password(): AbstractControl | null {
@@ -24,9 +25,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.clear()
-    localStorage.setItem('INIT_TOKEN', '_I')
+    localStorage.setItem('INIT_TOKEN', '_')
     this.loginForm = this.ctrl.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
@@ -34,15 +35,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.ctrl.auth.login(EndPoints.AUTH, [
       ['grant_type', 'password'],
-      ['username', this.username?.value],
+      ['username', this.emai?.value],
       ['password', this.password?.value]
     ]).subscribe((res: any) => {
       if (res.access_token) {
         localStorage.setItem('ACCESS_TOKEN', res.access_token)
         localStorage.removeItem('INIT_TOKEN')
         this.ctrl.router.navigate([this.ctrl.routes.dashboard])
-      } if (res.error) {
-        console.log('error')
       }
     })
   }
