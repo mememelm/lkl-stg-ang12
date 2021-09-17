@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       if (res.access_token) {
         this.setUserStorage(this.email?.value)
         this.ctrl.storage.setLocalString('ACCESS_TOKEN', res.access_token)
-        this.ctrl.router.navigate([this.ctrl.routes.dashboard])
+        this.ctrl.router.navigate([this.ctrl.routes.home])
       }
     }, (() => { this.errorLogin = true }))
   }

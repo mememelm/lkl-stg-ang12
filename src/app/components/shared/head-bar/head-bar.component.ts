@@ -1,5 +1,5 @@
 import { ControllerService } from './../../../services/controller.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-head-bar',
@@ -8,12 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadBarComponent implements OnInit {
 
+  @Output() emitSide = new EventEmitter<any>()
   currentUser: any
+  hideMenu = true
 
   constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
     this.currentUser = this.ctrl.storage.getLocalObject('CURRENT_USER')
+  }
+
+  showMenu() {
+    this.emitSide.emit()
   }
 
 }

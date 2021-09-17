@@ -1,7 +1,8 @@
+import { AutoLogoutService } from './services/auto-logout.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +23,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HeadBarComponent } from './components/shared/head-bar/head-bar.component';
-import { SideMenuComponent } from './components/container/side-menu/side-menu.component';
+import { SideMenuComponent } from './components/shared/side-menu/side-menu.component';
+import { CoreComponent } from './components/container/core/core.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { SideMenuComponent } from './components/container/side-menu/side-menu.co
     LoginComponent,
     DashboardComponent,
     SideMenuComponent,
-    HeadBarComponent
+    HeadBarComponent,
+    CoreComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,12 @@ import { SideMenuComponent } from './components/container/side-menu/side-menu.co
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (service: AutoLogoutService) => function () { return service.reset() },
+      deps: [AutoLogoutService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

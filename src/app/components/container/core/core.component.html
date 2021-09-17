@@ -1,0 +1,13 @@
+<mat-drawer-container class="core-container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <app-side-menu></app-side-menu>
+  </mat-drawer>
+
+  <div>
+    <!-- <button type="button" mat-button (click)="drawer.toggle()">
+      Toggle sidenav
+    </button> -->
+    <app-head-bar (emitSide)="toogleMenu()"></app-head-bar>
+  </div>
+
+</mat-drawer-container>
