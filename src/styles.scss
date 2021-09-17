@@ -31,6 +31,10 @@ body {
   font-family: Roboto, "Helvetica", "Arial", sans-serif;
 }
 
+.cursor-pt {
+  cursor: pointer;
+}
+
 .error {
   color: $error;
 }

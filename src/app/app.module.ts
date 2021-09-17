@@ -19,12 +19,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HeadBarComponent } from './components/shared/head-bar/head-bar.component';
 import { SideMenuComponent } from './components/shared/side-menu/side-menu.component';
 import { CoreComponent } from './components/container/core/core.component';
+import { CityComponent } from './pages/city/city.component';
+import { AgencyComponent } from './pages/agency/agency.component';
+import { CompanyComponent } from './pages/company/company.component';
+import { ItineraryComponent } from './pages/itinerary/itinerary.component';
+import { VehicleComponent } from './pages/vehicle/vehicle.component';
+import { AssignmentComponent } from './pages/assignment/assignment.component';
+import { ReservationComponent } from './pages/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +41,14 @@ import { CoreComponent } from './components/container/core/core.component';
     DashboardComponent,
     SideMenuComponent,
     HeadBarComponent,
-    CoreComponent
+    CoreComponent,
+    CityComponent,
+    AgencyComponent,
+    CompanyComponent,
+    ItineraryComponent,
+    VehicleComponent,
+    AssignmentComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +65,7 @@ import { CoreComponent } from './components/container/core/core.component';
     MatSidenavModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatMenuModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [

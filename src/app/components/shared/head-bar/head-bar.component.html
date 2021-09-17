@@ -1,6 +1,7 @@
 <mat-toolbar class="head-container">
   <button mat-icon-button (click)="showMenu()">
-    <mat-icon>menu</mat-icon>
+    <mat-icon *ngIf="toogle">menu</mat-icon>
+    <mat-icon *ngIf="!toogle">arrow_back_ios</mat-icon>
   </button>
   <span class="spacer"></span>
   <span>{{currentUser.firstname | titlecase}} {{currentUser.lastname | uppercase}}</span>

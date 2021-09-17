@@ -1,0 +1,20 @@
+.menu-container {
+  margin-top: 50px;
+
+  .menu {
+    margin-top: 15px;
+    .menu-label {
+      margin-left: 25px;
+      font-size: large;
+      margin-top: 2px;
+    }
+  }
+}
+
+.mat-menu-item {
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: inline-flex;
+}

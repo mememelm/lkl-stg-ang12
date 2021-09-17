@@ -1,13 +1,18 @@
 <mat-drawer-container class="core-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <app-side-menu></app-side-menu>
+    <app-side-menu (emitSelection)="select($event)"></app-side-menu>
   </mat-drawer>
 
-  <div>
-    <!-- <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button> -->
-    <app-head-bar (emitSide)="toogleMenu()"></app-head-bar>
-  </div>
+  <app-head-bar [toogle]="toogle" (emitSide)="toogleMenu()"></app-head-bar>
+  <ng-container [ngSwitch]="page">
+    <app-dashboard *ngSwitchCase="'dashboard'"></app-dashboard>
+    <app-city *ngSwitchCase="'city'"></app-city>
+    <app-agency *ngSwitchCase="'agency'"></app-agency>
+    <app-company *ngSwitchCase="'company'"></app-company>
+    <app-itinerary *ngSwitchCase="'itinerary'"></app-itinerary>
+    <app-vehicle *ngSwitchCase="'vehicle'"></app-vehicle>
+    <app-assignment *ngSwitchCase="'assignment'"></app-assignment>
+    <app-reservation *ngSwitchCase="'reservation'"></app-reservation>
+  </ng-container>
 
 </mat-drawer-container>

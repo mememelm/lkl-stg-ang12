@@ -1,1 +1,8 @@
-<p>app-side-menu work!</p>
+<div class="menu-container">
+  <div class="menu" *ngFor="let menu of listMenu">
+    <button mat-menu-item class="cursor-pt" (click)="select(menu.page)">
+      <mat-icon>{{menu.icon}}</mat-icon>
+      <span class="menu-label">{{menu.title}}</span>
+    </button>
+  </div>
+</div>

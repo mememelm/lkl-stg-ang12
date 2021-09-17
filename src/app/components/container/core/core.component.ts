@@ -8,15 +8,23 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class CoreComponent implements OnInit {
 
   @ViewChild('drawer') drawer: any
-  showFiller = false
+  toogle = true
+  page!: string
 
   constructor() { }
 
   ngOnInit(): void {
+    setTimeout(() => { this.toogleMenu() }, 500)
+    this.page = 'dashboard'
   }
 
   toogleMenu() {
     this.drawer.toggle()
+    this.toogle ? this.toogle = false : this.toogle = true
+  }
+
+  select($event: string) {
+    this.page = $event
   }
 
 }
