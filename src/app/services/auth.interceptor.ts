@@ -10,7 +10,6 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from "rxjs/operators";
-import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,13 +17,12 @@ export class AuthInterceptor implements HttpInterceptor {
   public auth: string | undefined
 
   constructor(
-    private router: Router,
     private ctrl: ControllerService
   ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let init = this.ctrl.storage.init()
-    init ? this.auth = 'Basic ' + ENV.BASIC_AUTH : this.auth = 'Bearer ' + this.ctrl.storage.token()
+    let init = this.ctrl.storage.getLocalString('INIT_TOKEN')
+    init ? this.auth = 'Basic ' + ENV.BASIC_AUTH : this.auth = 'Bearer ' + this.ctrl.storage.getLocalString('ACCESS_TOKEN')
     request = request.clone({
       setHeaders: {
         'Authorization': <string>this.auth,

@@ -7,5 +7,6 @@ export class RoutesExt {
 
   public login = 'login'
   public dashboard = 'dashboard'
+  public home = 'accueil'
 
 }

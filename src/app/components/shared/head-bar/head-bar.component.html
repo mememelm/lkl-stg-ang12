@@ -1,0 +1,10 @@
+<mat-toolbar class="head-container">
+  <button mat-icon-button (click)="showMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <span>{{currentUser.firstname | titlecase}} {{currentUser.lastname | uppercase}}</span>
+  <button mat-icon-button (click)="ctrl.core.logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

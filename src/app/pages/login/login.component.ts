@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.clear()
-    localStorage.setItem('INIT_TOKEN', '_')
+    this.ctrl.storage.setLocalString('INIT_TOKEN', '_')
     this.loginForm = this.ctrl.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
     ]).subscribe((res: any) => {
       if (res.access_token) {
         this.setUserStorage(this.email?.value)
-        localStorage.setItem('ACCESS_TOKEN', res.access_token)
-        localStorage.removeItem('INIT_TOKEN')
-        this.ctrl.router.navigate([this.ctrl.routes.dashboard])
+        this.ctrl.storage.setLocalString('ACCESS_TOKEN', res.access_token)
+        this.ctrl.router.navigate([this.ctrl.routes.home])
       }
     }, (() => { this.errorLogin = true }))
   }
@@ -65,11 +64,12 @@ export class LoginComponent implements OnInit {
   }
 
   userStorage(firstname: string, lastname: string, role: string) {
-    localStorage.setItem('CURRENT_USER', JSON.stringify({
+    localStorage.removeItem('INIT_TOKEN')
+    this.ctrl.storage.setLocalObject('CURRENT_USER', {
       firstname: firstname,
       lastname: lastname,
       role: role
-    }))
+    })
   }
 
 }
