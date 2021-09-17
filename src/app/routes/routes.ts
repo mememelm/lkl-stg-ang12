@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 export class RoutesExt {
 
   public login = 'login'
-  public dashboard = 'dashboard'
   public home = 'accueil'
+  public error = 'erreur'
 
 }

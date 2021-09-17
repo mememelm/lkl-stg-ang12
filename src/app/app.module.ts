@@ -33,6 +33,7 @@ import { ItineraryComponent } from './pages/itinerary/itinerary.component';
 import { VehicleComponent } from './pages/vehicle/vehicle.component';
 import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     ItineraryComponent,
     VehicleComponent,
     AssignmentComponent,
-    ReservationComponent
+    ReservationComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
