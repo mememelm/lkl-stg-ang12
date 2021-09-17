@@ -1,3 +1,4 @@
+import { AlertService } from './alert.service';
 import { AuthService } from './auth.service';
 import { ApiClientService } from './api-client.service';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,8 @@ export class ControllerService {
     public routes: RoutesExt,
     public api: ApiClientService,
     public auth: AuthService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public alert: AlertService
   ) { }
 
 }

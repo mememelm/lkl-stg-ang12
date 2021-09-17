@@ -15,15 +15,21 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { HeadBarComponent } from './components/shared/head-bar/head-bar.component';
+import { SideMenuComponent } from './components/container/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SideMenuComponent,
+    HeadBarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatSidenavModule,
+    MatSnackBarModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [
