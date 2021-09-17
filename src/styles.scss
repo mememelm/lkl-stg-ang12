@@ -19,11 +19,18 @@ $e-voyage12-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($e-voyage12-theme);
 
+@import "./sass/colors.scss";
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica", "Arial", sans-serif;
+}
+
+.error {
+  color: $error;
 }

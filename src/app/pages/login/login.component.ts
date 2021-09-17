@@ -11,11 +11,13 @@ import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup
+  errorLogin = false
+  currentYear = new Date()
 
   constructor(public ctrl: ControllerService) { }
 
-  get username(): AbstractControl | null {
-    return this.loginForm.get('username')
+  get email(): AbstractControl | null {
+    return this.loginForm.get('email')
   }
 
   get password(): AbstractControl | null {
@@ -24,9 +26,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.clear()
-    localStorage.setItem('INIT_TOKEN', '_I')
+    localStorage.setItem('INIT_TOKEN', '_')
     this.loginForm = this.ctrl.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
@@ -34,17 +36,40 @@ export class LoginComponent implements OnInit {
   login() {
     this.ctrl.auth.login(EndPoints.AUTH, [
       ['grant_type', 'password'],
-      ['username', this.username?.value],
+      ['username', this.email?.value],
       ['password', this.password?.value]
     ]).subscribe((res: any) => {
       if (res.access_token) {
+        this.setUserStorage(this.email?.value)
         localStorage.setItem('ACCESS_TOKEN', res.access_token)
         localStorage.removeItem('INIT_TOKEN')
         this.ctrl.router.navigate([this.ctrl.routes.dashboard])
-      } if (res.error) {
-        console.log('error')
       }
-    })
+    }, (() => { this.errorLogin = true }))
+  }
+
+  setUserStorage(email: string) {
+    switch (email) {
+      case 'admin.betax@yopmail.com':
+        this.userStorage('Meidhi', 'Johan', 'ADMIN')
+        break
+      case 'user.betax@yopmail.com':
+        this.userStorage('Melane', 'Lamar', 'USER')
+        break
+      case 'super.betax@yopmail.com':
+        this.userStorage('Maylan', 'Druge', 'SUPER_USER')
+        break
+      default:
+        break
+    }
+  }
+
+  userStorage(firstname: string, lastname: string, role: string) {
+    localStorage.setItem('CURRENT_USER', JSON.stringify({
+      firstname: firstname,
+      lastname: lastname,
+      role: role
+    }))
   }
 
 }
