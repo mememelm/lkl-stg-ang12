@@ -1,3 +1,4 @@
+import { ControllerService } from './../../../services/controller.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeadBarComponent implements OnInit {
 
-  constructor() { }
+  currentUser: any
+
+  constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
+    this.currentUser = this.ctrl.storage.getLocalObject('CURRENT_USER')
   }
 
 }

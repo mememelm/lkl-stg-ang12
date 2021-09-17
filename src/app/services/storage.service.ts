@@ -19,7 +19,7 @@ export class StorageService {
     return <string>localStorage.getItem(local)
   }
 
-  public getLocalObject(local: string): string {
+  public getLocalObject(local: string): void {
     return JSON.parse(<string>localStorage.getItem(local))
   }
 }

@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -45,6 +46,7 @@ import { SideMenuComponent } from './components/container/side-menu/side-menu.co
     MatIconModule,
     MatSidenavModule,
     MatSnackBarModule,
+    MatToolbarModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [
