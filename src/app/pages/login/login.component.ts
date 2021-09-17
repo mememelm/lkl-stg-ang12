@@ -11,12 +11,13 @@ import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup
+  errorLogin = false
   currentYear = new Date()
 
   constructor(public ctrl: ControllerService) { }
 
-  get emai(): AbstractControl | null {
-    return this.loginForm.get('emai')
+  get email(): AbstractControl | null {
+    return this.loginForm.get('email')
   }
 
   get password(): AbstractControl | null {
@@ -35,15 +36,40 @@ export class LoginComponent implements OnInit {
   login() {
     this.ctrl.auth.login(EndPoints.AUTH, [
       ['grant_type', 'password'],
-      ['username', this.emai?.value],
+      ['username', this.email?.value],
       ['password', this.password?.value]
     ]).subscribe((res: any) => {
       if (res.access_token) {
+        this.setUserStorage(this.email?.value)
         localStorage.setItem('ACCESS_TOKEN', res.access_token)
         localStorage.removeItem('INIT_TOKEN')
         this.ctrl.router.navigate([this.ctrl.routes.dashboard])
       }
-    })
+    }, (() => { this.errorLogin = true }))
+  }
+
+  setUserStorage(email: string) {
+    switch (email) {
+      case 'admin.betax@yopmail.com':
+        this.userStorage('Meidhi', 'Johan', 'ADMIN')
+        break
+      case 'user.betax@yopmail.com':
+        this.userStorage('Melane', 'Lamar', 'USER')
+        break
+      case 'super.betax@yopmail.com':
+        this.userStorage('Maylan', 'Druge', 'SUPER_USER')
+        break
+      default:
+        break
+    }
+  }
+
+  userStorage(firstname: string, lastname: string, role: string) {
+    localStorage.setItem('CURRENT_USER', JSON.stringify({
+      firstname: firstname,
+      lastname: lastname,
+      role: role
+    }))
   }
 
 }

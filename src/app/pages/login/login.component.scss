@@ -38,6 +38,7 @@
   top: calc(50% - 35px);
   left: calc(50% - 255px);
   z-index: 2;
+  margin-top: 25px;
 }
 
 .header div {
@@ -95,6 +96,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 6px;
+    margin-bottom: 20px;
   }
 
   .login-button:hover {
@@ -114,9 +116,25 @@
     color: $white-change;
     text-align: center;
     margin-left: 50px;
-
     a {
       color: $blue-travel !important;
+    }
+  }
+
+  .error-container {
+    max-width: 200px;
+    text-align: center;
+    margin-left: 35px;
+    display: inline-flex;
+    width: 100%;
+
+    .left {
+      width: 15%;
+      margin-top: 7px !important;
+    }
+
+    .right {
+      width: 85%;
     }
   }
 }

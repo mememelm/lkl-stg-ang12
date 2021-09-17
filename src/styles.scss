@@ -19,6 +19,8 @@ $e-voyage12-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($e-voyage12-theme);
 
+@import "./sass/colors.scss";
+
 html,
 body {
   height: 100%;
@@ -29,24 +31,6 @@ body {
   font-family: Roboto, "Helvetica", "Arial", sans-serif;
 }
 
-.container {
-  position: relative !important;
-  width: 100%;
-  font-size: 36px;
-  min-height: calc(100vh - 64px);
-
-  @media (max-width: 475px) {
-    min-height: calc(100vh - 56px);
-    padding-top: 56px;
-  }
-
-  .form-container {
-    transition: all 0.3s ease;
-    display: flex;
-    text-align: center;
-    flex-flow: column;
-    align-items: center;
-    width: 100%;
-    padding: calc(30vh - 100px) 0 calc(50vh - 100px);
-  }
+.error {
+  color: $error;
 }

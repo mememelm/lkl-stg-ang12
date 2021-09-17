@@ -7,7 +7,18 @@
 <div class="login" [formGroup]="loginForm">
   <input matInput class="login-input" type="text" placeholder="Email *" formControlName="email">
   <input matInput class="login-input margin-t" type="password" placeholder="Mot de passe *" formControlName="password">
-  <input class="login-button margin-t" type="button" value="Se connecter">
+  <br>
+  <div class="margin-t error-container error animate__animated animate__tada" *ngIf="errorLogin">
+    <div class="left">
+      <mat-icon>info</mat-icon>
+    </div>
+    <div class="right">
+      <mat-label>Veuillez vérifier votre email ou votre mot de passe</mat-label>
+    </div>
+  </div>
+  <button [disabled]="!loginForm.valid" class="login-button margin-t" (click)="login()">
+    Se connnecter
+  </button>
   <br>
   <mat-label class="cp-label">
     Copyright ©
