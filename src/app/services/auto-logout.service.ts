@@ -13,11 +13,11 @@ export class AutoLogoutService {
   constructor(private ctrl: ControllerService) { }
 
   getLastAction() {
-    return parseInt(this.ctrl.storage.getLocalString(storeKey))
+    return parseInt(<string>localStorage.getItem(storeKey))
   }
 
   setLastAction(lastAction: number) {
-    this.ctrl.storage.setLocalString(storeKey, lastAction.toString())
+    localStorage.setItem(storeKey, lastAction.toString())
   }
 
   reset() {
@@ -41,7 +41,7 @@ export class AutoLogoutService {
   }
 
   storageEvent() {
-    this.ctrl.storage.getLocalString(storeKey)
+    localStorage.getItem(storeKey)
   }
 
   initListener() {

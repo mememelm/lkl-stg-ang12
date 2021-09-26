@@ -1,4 +1,4 @@
-import { EndPoints } from './../../routes/endpoints';
+import { EndPoints } from '../../constants/classes/endpoints';
 import { ControllerService } from './../../services/controller.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, Validators } from '@angular/forms';
@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    localStorage.clear()
-    this.ctrl.storage.setLocalString('INIT_TOKEN', '_')
     this.loginForm = this.ctrl.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -34,42 +32,12 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.ctrl.auth.login(EndPoints.AUTH, [
-      ['grant_type', 'password'],
-      ['username', this.email?.value],
-      ['password', this.password?.value]
-    ]).subscribe((res: any) => {
-      if (res.access_token) {
-        this.setUserStorage(this.email?.value)
-        this.ctrl.storage.setLocalString('ACCESS_TOKEN', res.access_token)
+    this.ctrl.api.post(EndPoints.LOGIN, this.loginForm.value).subscribe((res: any) => {
+      if (res.message === 'success') {
+        localStorage.setItem('ACCESS_TOKEN', res.token)
         this.ctrl.router.navigate([this.ctrl.routes.home])
       }
     }, (() => { this.errorLogin = true }))
-  }
-
-  setUserStorage(email: string) {
-    switch (email) {
-      case 'admin.betax@yopmail.com':
-        this.userStorage('Meidhi', 'Johan', 'ADMIN')
-        break
-      case 'user.betax@yopmail.com':
-        this.userStorage('Melane', 'Lamar', 'USER')
-        break
-      case 'super.betax@yopmail.com':
-        this.userStorage('Maylan', 'Druge', 'SUPER_USER')
-        break
-      default:
-        break
-    }
-  }
-
-  userStorage(firstname: string, lastname: string, role: string) {
-    localStorage.removeItem('INIT_TOKEN')
-    this.ctrl.storage.setLocalObject('CURRENT_USER', {
-      firstname: firstname,
-      lastname: lastname,
-      role: role
-    })
   }
 
 }

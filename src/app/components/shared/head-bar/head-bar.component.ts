@@ -15,7 +15,7 @@ export class HeadBarComponent implements OnInit {
   constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.ctrl.storage.getLocalObject('CURRENT_USER')
+    this.currentUser = this.ctrl.storage.user()
   }
 
   showMenu() {

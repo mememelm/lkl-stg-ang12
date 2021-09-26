@@ -1,7 +1,3 @@
-const API_URL = 'http://localhost:8080/'
-const BASIC_AUTH = 'ZU9vSjVFZzNWR1FjZVlNQ1AyU1BiSE1mYzhwaF9RcDJka25fUjpNNFBHYXhtZGFzYUV6T2laZUVNeUMxT2NxRG54TG95LVA='
-
 export const ENV = {
-  API_URL: API_URL,
-  BASIC_AUTH: BASIC_AUTH
+  API_URL: 'http://localhost:3000/'
 }

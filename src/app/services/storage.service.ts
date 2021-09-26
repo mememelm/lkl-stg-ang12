@@ -7,19 +7,11 @@ export class StorageService {
 
   constructor() { }
 
-  public setLocalString(local: string, value: string): void {
-    localStorage.setItem(local, value)
+  public user() {
+    return JSON.parse(<string>localStorage.getItem('CURRENT_USER'))
   }
 
-  public setLocalObject(local: string, value: Object): void {
-    localStorage.setItem(local, JSON.stringify(value))
-  }
-
-  public getLocalString(local: string): string {
-    return <string>localStorage.getItem(local)
-  }
-
-  public getLocalObject(local: string): void {
-    return JSON.parse(<string>localStorage.getItem(local))
+  public token() {
+    return <string>localStorage.getItem('ACCESS_TOKEN')
   }
 }

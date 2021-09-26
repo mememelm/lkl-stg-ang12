@@ -10,7 +10,7 @@ export class ErrorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('errue')
+    console.warn('error')
   }
 
 }

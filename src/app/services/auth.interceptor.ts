@@ -14,18 +14,12 @@ import { catchError } from "rxjs/operators";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  public auth: string | undefined
-
-  constructor(
-    private ctrl: ControllerService
-  ) { }
+  constructor(private ctrl: ControllerService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let init = this.ctrl.storage.getLocalString('INIT_TOKEN')
-    init ? this.auth = 'Basic ' + ENV.BASIC_AUTH : this.auth = 'Bearer ' + this.ctrl.storage.getLocalString('ACCESS_TOKEN')
     request = request.clone({
       setHeaders: {
-        'Authorization': <string>this.auth,
+        'Authorization': 'Barear ' + this.ctrl.storage.token(),
         'Content-Type': 'application/json'
       }
     })
