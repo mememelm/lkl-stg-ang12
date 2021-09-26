@@ -5,15 +5,20 @@
 </div>
 <br>
 <div class="login" [formGroup]="loginForm">
-  <input matInput class="login-input" type="text" placeholder="Email *" formControlName="email">
+  <input *ngIf="!passwordError" matInput class="login-input" type="text" placeholder="Identifiant ou Email *"
+    formControlName="login">
+  <mat-label class="username animate__animated animate__fadeInRight" *ngIf="passwordError">
+    Bonjour {{user?.username | titlecase}}
+  </mat-label>
   <input matInput class="login-input margin-t" type="password" placeholder="Mot de passe *" formControlName="password">
   <br>
-  <div class="margin-t error-container error animate__animated animate__tada" *ngIf="errorLogin">
+  <div class="margin-t error-container error animate__animated animate__tada" *ngIf="error">
     <div class="left">
       <mat-icon>info</mat-icon>
     </div>
     <div class="right">
-      <mat-label>Veuillez vérifier votre email ou votre mot de passe</mat-label>
+      <mat-label *ngIf="passwordError">Votre mot de passe est incorrect</mat-label>
+      <mat-label *ngIf="userError">Cet utilisateur n'est pas inscrit dans la base de données</mat-label>
     </div>
   </div>
   <button [disabled]="!loginForm.valid" class="login-button margin-t" (click)="login()">

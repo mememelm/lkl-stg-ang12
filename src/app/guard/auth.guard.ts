@@ -19,7 +19,6 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const url = state.url.split('?')[0]
-    console.log(url)
     if (url == '/') {
       this.authorization = true
       this.ctrl.router.navigate([this.ctrl.routes.error], { queryParams: { invalid_url: '?' } })
