@@ -1,5 +1,6 @@
 import { ControllerService } from './../../../services/controller.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/constants/models/user';
 
 @Component({
   selector: 'app-head-bar',
@@ -10,12 +11,12 @@ export class HeadBarComponent implements OnInit {
 
   @Output() emitSide = new EventEmitter<any>()
   @Input() toogle = true
-  currentUser: any
+  user!: User
 
   constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
-    this.currentUser = this.ctrl.storage.user()
+    this.user = this.ctrl.storage.user()
   }
 
   showMenu() {

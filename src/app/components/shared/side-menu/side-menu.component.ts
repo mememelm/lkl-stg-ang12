@@ -1,3 +1,5 @@
+import { User } from './../../../constants/models/user';
+import { ControllerService } from './../../../services/controller.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,21 +9,23 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
+  user!: User
+
   @Output() emitSelection = new EventEmitter<string>()
 
   listMenu = [
-    { title: 'Dashboard', icon: 'dashboard', page: 'dashboard' },
-    { title: 'Ville', icon: 'location_on', page: 'city' },
-    { title: 'Agence', icon: 'house', page: 'agency' },
-    { title: 'Compagnies', icon: 'maps_home_work', page: 'company' },
-    { title: 'Itinéraire', icon: 'edit_road', page: 'itinerary' },
-    { title: 'Véhicule', icon: 'local_shipping', page: 'vehicle' },
-    { title: 'Affectation', icon: 'receipt_long', page: 'assignment' },
-    { title: 'Réservation', icon: 'event_seat', page: 'reservation' }
+    { title: 'Dashboard', icon: 'dashboard', page: 'dashboard', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
+    { title: 'Agences', icon: 'house', page: 'agency', read: ['ADMIN'] },
+    { title: 'Compagnies', icon: 'maps_home_work', page: 'company', read: ['ADMIN', 'AGENCY'] },
+    { title: 'Itinéraires', icon: 'edit_road', page: 'itinerary', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
+    { title: 'Villes', icon: 'location_on', page: 'city', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
+    { title: 'Véhicules', icon: 'local_shipping', page: 'vehicle', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
+    { title: 'Réservation', icon: 'event_seat', page: 'reservation', read: 'COMPANY' }
   ]
-  constructor() { }
+  constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
+    this.user = this.ctrl.storage.user()
   }
 
   select(page: string) {

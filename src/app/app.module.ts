@@ -31,9 +31,9 @@ import { AgencyComponent } from './pages/agency/agency.component';
 import { CompanyComponent } from './pages/company/company.component';
 import { ItineraryComponent } from './pages/itinerary/itinerary.component';
 import { VehicleComponent } from './pages/vehicle/vehicle.component';
-import { AssignmentComponent } from './pages/assignment/assignment.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { BookingComponent } from './pages/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +48,9 @@ import { ErrorComponent } from './pages/error/error.component';
     CompanyComponent,
     ItineraryComponent,
     VehicleComponent,
-    AssignmentComponent,
     ReservationComponent,
-    ErrorComponent
+    ErrorComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
