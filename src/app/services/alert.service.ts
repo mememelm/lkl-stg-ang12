@@ -11,4 +11,8 @@ export class AlertService {
   open(message: string) {
     this.snackBar.open(message, 'Fermer', { duration: 5000 })
   }
+
+  serverError() {
+    this.snackBar.open("Erreur serveur. Veuillez vous reconnecter!", 'OK', { duration: 5000 })
+  }
 }

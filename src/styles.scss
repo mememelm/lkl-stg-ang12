@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 
 @include mat.core();
 
@@ -37,4 +37,57 @@ body {
 
 .error {
   color: $error;
+}
+
+section {
+  margin: 40px;
+}
+
+.card-table {
+  margin: 40px;
+  padding: 20px 20px;
+  justify-content: center;
+
+  .table-header {
+    color: $blue-travel;
+  }
+
+  .container-action {
+    width: 150px;
+    text-align: left !important;
+
+    .delete {
+      color: $error;
+    }
+  }
+}
+
+.input-field {
+  font-weight: 500 !important;
+  font-size: 16px;
+  height: 35px;
+  border: 1px solid $brow-theme;
+  border-radius: 12px;
+  outline: none;
+  margin: 5px;
+  min-width: 250px;
+  padding-left: 15px;
+  background: $white-change;
+}
+
+.input-select {
+  font-weight: 500;
+  font-size: 16px;
+  height: 38px;
+  border: 1px solid $brow-theme;
+  border-radius: 12px;
+  margin: 5px;
+  outline: none;
+  min-width: 250px;
+  padding-left: 13px;
+  width: 270px;
+}
+
+.input-field:focus {
+  border: 1px solid $blue-travel;
 }

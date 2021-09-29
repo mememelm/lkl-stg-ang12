@@ -22,4 +22,12 @@ export class StorageService {
   public company() {
     return JSON.parse(<string>localStorage.getItem('COMPANY'))
   }
+
+  public action() {
+    return <string>localStorage.getItem('AC')
+  }
+
+  public remove(local: string) {
+    return localStorage.removeItem(local)
+  }
 }

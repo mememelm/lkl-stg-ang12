@@ -1,3 +1,4 @@
+import { ControllerService } from './../../../services/controller.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
@@ -11,10 +12,12 @@ export class CoreComponent implements OnInit {
   toogle = true
   page!: string
 
-  constructor() { }
+  constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
-    setTimeout(() => { this.toogleMenu() }, 500)
+    setTimeout(() => {
+      this.toogleMenu()
+    }, 500)
     this.page = 'dashboard'
   }
 

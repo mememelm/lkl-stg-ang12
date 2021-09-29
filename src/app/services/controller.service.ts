@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
 import { RoutesExt } from '../routes/routes';
 import { FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class ControllerService {
     public storage: StorageService,
     public api: ApiClientService,
     public alert: AlertService,
-    public core: CoreService
+    public core: CoreService,
+    public modal: MatDialog
   ) { }
 
 }

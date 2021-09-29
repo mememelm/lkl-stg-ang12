@@ -1,0 +1,21 @@
+<div class="margin" *ngIf="display" [@ngIfAnimation] appScrollTo [formGroup]="userForm">
+  <h1>{{userTitle}}</h1>
+  <p>
+    <input type="text" placeholder="Email" class="input-field" formControlName="email">
+    <input type="text" placeholder="Nom d'utilisateur" class="input-field" formControlName="username">
+  </p>
+  <p>
+    <select class="input-select" required formControlName="gender">
+      <option value="" disabled selected hidden>Civilité</option>
+      <option value="M">Monsieur</option>
+      <option value="F">Madame</option>
+      <option value="0">Madamemonsieur</option>
+    </select><br>
+    <input type="text" placeholder="Nom" class="input-field" formControlName="lastname">
+    <input type="text" placeholder="Prénom" class="input-field" formControlName="firstname">
+  </p>
+  <p>
+    <input type="text" placeholder="N° téléphone" class="input-field" maxlength="15" formControlName="phone">
+    <input type="text" placeholder="CIN" class="input-field" maxlength="15" formControlName="identity_card">
+  </p>
+</div>

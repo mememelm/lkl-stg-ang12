@@ -1,4 +1,4 @@
-export const frenchDataTable = {
+export const frenchDataTable: Object = {
   sEmptyTable: 'Aucune donnée disponible dans le tableau',
   sInfo: "Affichage de l'élément _START_ à _END_ sur _TOTAL_ éléments",
   sInfoEmpty: "Affichage de l'élément 0 à 0 sur 0 élément",
@@ -11,10 +11,10 @@ export const frenchDataTable = {
   sSearch: 'Rechercher :',
   sZeroRecords: 'Aucun élément correspondant trouvé',
   oPaginate: {
-    sFirst: 'Premier',
-    sLast: 'Dernier',
-    sNext: 'Suivant',
-    sPrevious: 'Précédent',
+    sFirst: '<<<',
+    sLast: '>>>',
+    sNext: '>',
+    sPrevious: '<',
   },
   oAria: {
     sSortAscending: ': activer pour trier la colonne par ordre croissant',

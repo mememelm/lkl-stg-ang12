@@ -1,1 +1,34 @@
-<p [@ngIfAnimation]>agency works!</p>
+<section>
+  <h1>Agences</h1>
+  <button mat-flat-button color='primary' (click)="openAddAgency()">+ Ajouter</button>
+</section>
+
+<mat-card [@ngIfAnimation] class="card-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead class="table-header">
+      <tr>
+        <th hidden></th>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>Nombre compagnies</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agency of listAgency">
+        <th hidden></th>
+        <td>{{ agency.name }}</td>
+        <td>{{ agency.address }}</td>
+        <td>{{ agency.companies?.length }}</td>
+        <td class="container-action">
+          <button mat-flat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="delete" mat-flat-button (click)="openDeleteAgency(agency.id, agency.name)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

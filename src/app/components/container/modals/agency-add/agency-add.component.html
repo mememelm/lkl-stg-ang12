@@ -1,0 +1,13 @@
+<h1>Information agence</h1>
+<div [formGroup]="agencyForm">
+  <input type="text" placeholder="Nom" class="input-field" formControlName='name'>
+  <input type="text" placeholder="Adresse" class="input-field" formControlName='address'>
+</div>
+
+<app-user-add [display]="agencyForm.valid" [userForm]="userForm" userTitle="Information utilisateur assigné">
+</app-user-add>
+
+<div mat-dialog-actions [@ngIfAnimation] AppScrollTo *ngIf="agencyForm.valid && userForm.valid">
+  <button mat-flat-button color="primary" (click)="addAgency()">Ajouter</button>
+  <button mat-button mat-dialog-close (click)="ctrl.storage.remove('AC')">Fermer</button>
+</div>

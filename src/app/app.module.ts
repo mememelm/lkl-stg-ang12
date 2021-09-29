@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button'
+import { DataTablesModule } from "angular-datatables";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card'
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -34,6 +37,11 @@ import { VehicleComponent } from './pages/vehicle/vehicle.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { BookingComponent } from './pages/booking/booking.component';
+import { AgencyDetailsComponent } from './components/container/modals/agency-details/agency-details.component';
+import { DeleteConfirmationComponent } from './components/shared/modals/delete-confirmation/delete-confirmation.component';
+import { ErrorModalComponent } from './components/shared/modals/error-modal/error-modal.component';
+import { AgencyAddComponent } from './components/container/modals/agency-add/agency-add.component';
+import { UserAddComponent } from './components/container/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +58,12 @@ import { BookingComponent } from './pages/booking/booking.component';
     VehicleComponent,
     ReservationComponent,
     ErrorComponent,
-    BookingComponent
+    BookingComponent,
+    AgencyDetailsComponent,
+    DeleteConfirmationComponent,
+    ErrorModalComponent,
+    AgencyAddComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +72,7 @@ import { BookingComponent } from './pages/booking/booking.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    DataTablesModule,
     RouterModule,
     MatFormFieldModule,
     MatInputModule,
@@ -68,6 +82,8 @@ import { BookingComponent } from './pages/booking/booking.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatMenuModule,
+    MatCardModule,
+    MatDialogModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [

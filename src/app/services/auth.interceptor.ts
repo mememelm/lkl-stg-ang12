@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({
       setHeaders: {
-        'Authorization': 'Barear ' + this.ctrl.storage.token(),
+        'Authorization': 'Bearer ' + this.ctrl.storage.token(),
         'Content-Type': 'application/json'
       }
     })

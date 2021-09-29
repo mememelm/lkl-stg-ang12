@@ -5,7 +5,7 @@
 </div>
 <br>
 <div class="login" [formGroup]="loginForm">
-  <input *ngIf="!passwordError" matInput class="login-input" type="text" placeholder="Identifiant ou Email *"
+  <input *ngIf="!passwordError" matInput class="login-input" type="text" placeholder="Nom d'utilisateur ou Email *"
     formControlName="login">
   <mat-label class="username animate__animated animate__fadeInRight" *ngIf="passwordError">
     Bonjour {{user?.username | titlecase}}
