@@ -4,7 +4,7 @@
   <input type="text" placeholder="Adresse" class="input-field" formControlName='address'>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button [@ngIfAnimation] *ngIf="agencyForm.valid" class="active-color"
+  <button mat-flat-button [@ngIfAnimation] *ngIf="agencyForm.valid" class="btn-update"
     (click)="updateAgency()">Modifier</button>
   <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
 </div>

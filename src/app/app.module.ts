@@ -43,6 +43,8 @@ import { DeleteConfirmationComponent } from './components/shared/modals/delete-c
 import { ErrorModalComponent } from './components/shared/modals/error-modal/error-modal.component';
 import { AgencyAddComponent } from './components/container/modals/agency-add/agency-add.component';
 import { UserAddComponent } from './components/container/user-add/user-add.component';
+import { CompanyAddComponent } from './components/container/modals/company-add/company-add.component';
+import { AgencySelectListComponent } from './components/container/agency-select-list/agency-select-list.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { UserAddComponent } from './components/container/user-add/user-add.compo
     DeleteConfirmationComponent,
     ErrorModalComponent,
     AgencyAddComponent,
-    UserAddComponent
+    UserAddComponent,
+    CompanyAddComponent,
+    AgencySelectListComponent
   ],
   imports: [
     BrowserModule,

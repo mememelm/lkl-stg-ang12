@@ -34,7 +34,7 @@ export class AgencyComponent implements OnInit, OnDestroy, OnChanges {
         [5, 10, 50, -1],
         [5, 10, 50, 'Tous']
       ],
-      order: [[0, 'DESC']]
+      order: [[0, 'desc']]
     }
     this.loadAgency()
   }

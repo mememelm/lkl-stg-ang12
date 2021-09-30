@@ -54,7 +54,7 @@ export class AgencyAddComponent implements OnInit {
       gender: ['', Validators.required],
       lastname: ['', [Validators.required, Validators.minLength(2)]],
       firstname: ['', [Validators.required, Validators.minLength(2)]],
-      phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+')]],
+      phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(10)]],
       identity_card: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9]\d*$/)]],
       agencyId: ['']
     })

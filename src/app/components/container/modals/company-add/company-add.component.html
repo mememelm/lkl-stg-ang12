@@ -1,0 +1,20 @@
+<h1>Information compagnie</h1>
+<div [formGroup]="companyForm">
+  <input type="text" placeholder="Nom" class="input-field" formControlName='name'>
+  <input type="text" placeholder="Adresse" class="input-field" formControlName='address'> <br>
+  <input type="text" placeholder="N° téléphone" maxlength="15" class="input-field" formControlName='phone'>
+</div>
+
+<div class="margin" [@ngIfAnimation] AppScrollTo
+  *ngIf="companyName?.valid && companyAddress?.valid && companyPhone?.valid">
+  <h1>Agence affiliée</h1>
+  <app-agency-select-list [parentForm]="companyForm" controlName="agencyId"></app-agency-select-list>
+</div>
+
+<app-user-add [display]="companyForm.valid" [userForm]="userForm" userTitle="Information utilisateur assigné">
+</app-user-add>
+
+<div mat-dialog-actions *ngIf="companyForm.valid && userForm.valid" [@ngIfAnimation] AppScrollTo>
+  <button mat-flat-button color="primary" (click)="addCompany()">Ajouter</button>
+  <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
+</div>

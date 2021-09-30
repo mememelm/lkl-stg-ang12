@@ -47,6 +47,10 @@ section {
   margin: 40px;
 }
 
+.margin {
+  margin-top: 20px;
+}
+
 .card-table {
   margin: 40px;
   padding: 20px 20px;
@@ -99,4 +103,13 @@ section {
 
 .input-field:focus {
   border: 1px solid $blue-travel;
+}
+
+.btn-update{
+  background-color: $green-active;
+  color: $white-change;
+}
+
+.width-dialog .mat-dialog-container {
+  max-width: 800px !important;
 }

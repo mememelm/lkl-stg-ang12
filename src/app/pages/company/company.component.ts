@@ -1,3 +1,4 @@
+import { CompanyAddComponent } from './../../components/container/modals/company-add/company-add.component';
 import { EndPoints } from './../../constants/classes/endpoints';
 import { frenchDataTable } from './../../constants/languages/french-datatable';
 import { Company } from './../../constants/models/company';
@@ -30,7 +31,7 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
         [5, 10, 50, -1],
         [5, 10, 50, 'Tous']
       ],
-      order: [[0, 'ASC']]
+      order: [[0, 'asc']]
     }
     this.loadCompany()
   }
@@ -58,7 +59,10 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   openAddCompany(): void {
-
+    this.ctrl.storage.removeAction()
+    this.ctrl.modal.open(CompanyAddComponent, { panelClass: 'width-dialog' }).afterClosed().subscribe(() => {
+      if (this.ctrl.storage.action()) this.loadChange()
+    })
   }
 
 }
