@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
+import { MatExpansionModule } from '@angular/material/expansion'
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -84,6 +85,7 @@ import { UserAddComponent } from './components/container/user-add/user-add.compo
     MatMenuModule,
     MatCardModule,
     MatDialogModule,
+    MatExpansionModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [

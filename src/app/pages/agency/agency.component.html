@@ -19,9 +19,9 @@
         <th hidden></th>
         <td>{{ agency.name }}</td>
         <td>{{ agency.address }}</td>
-        <td>{{ agency.companies?.length }}</td>
+        <td style="text-align: center;">{{ agency.companies?.length }}</td>
         <td class="container-action">
-          <button mat-flat-button>
+          <button mat-flat-button (click)="openDetailAgency(agency)">
             <mat-icon>edit</mat-icon>
           </button>
           <button class="delete" mat-flat-button (click)="openDeleteAgency(agency.id, agency.name)">

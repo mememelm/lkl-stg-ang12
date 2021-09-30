@@ -3,7 +3,7 @@ import { ControllerService } from './../../../../services/controller.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
-export interface DialogData {
+export interface DialogDelete {
   id: number
   component: string
   title: string
@@ -20,7 +20,7 @@ export class DeleteConfirmationComponent implements OnInit {
 
   constructor(
     public ctrl: ControllerService,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDelete,
     private dialogRef: MatDialogRef<DeleteConfirmationComponent>
   ) { }
 
@@ -42,11 +42,11 @@ export class DeleteConfirmationComponent implements OnInit {
   delete(endpoint: string, target: string) {
     this.ctrl.api.delete(endpoint, this.data.id).subscribe(res => {
       if (res.message === 'success') {
-        localStorage.setItem('AC', '_')
+        this.ctrl.storage.setAction()
         this.ctrl.alert.open("Suppression " + target + " effectuée")
         this.dialogRef.close()
       } else {
-        this.ctrl.alert.open("L'agence n'est plus dans la base de données. Recharger la page actuelle")
+        this.ctrl.alert.open("L'agence n'est plus dans la base de données. Veuillez actualiser la page actuelle")
       }
     })
   }

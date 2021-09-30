@@ -27,7 +27,11 @@ export class StorageService {
     return <string>localStorage.getItem('AC')
   }
 
-  public remove(local: string) {
-    return localStorage.removeItem(local)
+  public setAction() {
+    return localStorage.setItem('AC', '_')
+  }
+
+  public removeAction() {
+    return localStorage.removeItem('AC')
   }
 }

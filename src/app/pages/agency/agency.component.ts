@@ -1,3 +1,4 @@
+import { AgencyDetailsComponent } from './../../components/container/modals/agency-details/agency-details.component';
 import { DeleteConfirmationComponent } from './../../components/shared/modals/delete-confirmation/delete-confirmation.component';
 import { FormGroup, Validators } from '@angular/forms';
 import { EndPoints } from './../../constants/classes/endpoints';
@@ -61,19 +62,29 @@ export class AgencyComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   openAddAgency() {
-    this.ctrl.storage.remove('AC')
+    this.ctrl.storage.removeAction()
     this.ctrl.modal.open(AgencyAddComponent).afterClosed().subscribe(() => {
       if (this.ctrl.storage.action()) this.loadChange()
     })
   }
 
   openDeleteAgency(agenceId: number, agenceName: string) {
+    this.ctrl.storage.removeAction()
     this.ctrl.modal.open(DeleteConfirmationComponent, {
       data: {
         id: agenceId,
         component: 'agency',
         title: 'Suppression de l\'agence ' + agenceName
       }
+    }).afterClosed().subscribe(() => {
+      if (this.ctrl.storage.action()) this.loadChange()
+    })
+  }
+
+  openDetailAgency(agency: Agency) {
+    this.ctrl.storage.removeAction()
+    this.ctrl.modal.open(AgencyDetailsComponent, {
+      data: { id: agency.id, agency: agency }
     }).afterClosed().subscribe(() => {
       if (this.ctrl.storage.action()) this.loadChange()
     })

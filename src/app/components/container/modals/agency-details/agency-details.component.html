@@ -1,1 +1,49 @@
-<p>agency-details works!</p>
+<h1>Information agence</h1>
+<div [formGroup]="agencyForm">
+  <input type="text" placeholder="Nom" class="input-field" formControlName='name'>
+  <input type="text" placeholder="Adresse" class="input-field" formControlName='address'>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button [@ngIfAnimation] *ngIf="agencyForm.valid" class="btn-update"
+    (click)="updateAgency()">Modifier</button>
+  <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
+</div>
+
+<hr class="margin">
+<mat-accordion multi #accordion="matAccordion">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Compagnie(s) affiliée(s)
+      </mat-panel-title>
+      <mat-panel-description>
+        <mat-icon>maps_home_work</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf="listCompany.length == 0">
+      Aucune companie affiliée
+    </div>
+    <div *ngIf="listCompany.length > 0">
+      <mat-card *ngFor="let company of listCompany">
+        <mat-card-title-group>
+          <mat-card-title>{{company.name}}</mat-card-title>
+          <mat-card-subtitle>
+            <mat-icon class="icon">place</mat-icon>{{company.address}}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            <mat-icon class="icon">phone</mat-icon>{{company.phone}}
+          </mat-card-subtitle>
+          <img mat-card-sm-image src="../../../../../assets/images/comp-font.png">
+        </mat-card-title-group>
+        <mat-card-content>
+          <span *ngIf="company.is_active">
+            <mat-icon>check_circle</mat-icon>
+          </span>
+          <span *ngIf="!company.is_active">
+            <mat-icon>cancel</mat-icon>
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

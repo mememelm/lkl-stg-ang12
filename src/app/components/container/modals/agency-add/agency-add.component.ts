@@ -81,7 +81,7 @@ export class AgencyAddComponent implements OnInit {
     this.agencyId?.setValue(agencyId)
     this.ctrl.api.post(EndPoints.SIGN, this.userForm.value).subscribe(res => {
       if (res.message) {
-        localStorage.setItem('AC', '_')
+        this.ctrl.storage.setAction()
         this.ctrl.alert.open("L'agence et l'utilisateur affilié ont été enregistrés")
         this.dialogRef.close()
       }

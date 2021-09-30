@@ -9,5 +9,5 @@
 
 <div mat-dialog-actions [@ngIfAnimation] AppScrollTo *ngIf="agencyForm.valid && userForm.valid">
   <button mat-flat-button color="primary" (click)="addAgency()">Ajouter</button>
-  <button mat-button mat-dialog-close (click)="ctrl.storage.remove('AC')">Fermer</button>
+  <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
 </div>
