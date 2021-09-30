@@ -16,10 +16,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let agency of listAgency">
-        <th hidden></th>
+        <td hidden></td>
         <td>{{ agency.name }}</td>
         <td>{{ agency.address }}</td>
-        <td style="text-align: center;">{{ agency.companies?.length }}</td>
+        <td>{{ agency.companies?.length }}</td>
         <td class="container-action">
           <button mat-flat-button (click)="openDetailAgency(agency)">
             <mat-icon>edit</mat-icon>

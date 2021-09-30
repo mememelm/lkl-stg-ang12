@@ -2,3 +2,40 @@
   <h1>Compagnies</h1>
   <button mat-flat-button color='primary' (click)="openAddCompany()">+ Ajouter</button>
 </section>
+
+<mat-card [@ngIfAnimation] class="card-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead class="table-header">
+      <tr>
+        <th>Nom</th>
+        <th>Contact</th>
+        <th>Adresse</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let company of listCompany">
+        <td>{{ company.name }}</td>
+        <td>{{ company.phone }}</td>
+        <td>{{ company.address }}</td>
+        <td>
+          <span *ngIf="company.is_active">
+            <mat-icon class="active-color">check_circle</mat-icon>
+          </span>
+          <span *ngIf="!company.is_active">
+            <mat-icon class="error">cancel</mat-icon>
+          </span>
+        </td>
+        <td class="container-action">
+          <button mat-flat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="delete" mat-flat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

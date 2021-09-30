@@ -4,7 +4,7 @@
   <input type="text" placeholder="Adresse" class="input-field" formControlName='address'>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button [@ngIfAnimation] *ngIf="agencyForm.valid" class="btn-update"
+  <button mat-flat-button [@ngIfAnimation] *ngIf="agencyForm.valid" class="active-color"
     (click)="updateAgency()">Modifier</button>
   <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
 </div>
@@ -37,7 +37,7 @@
         </mat-card-title-group>
         <mat-card-content>
           <span *ngIf="company.is_active">
-            <mat-icon>check_circle</mat-icon>
+            <mat-icon class="active-color">check_circle</mat-icon>
           </span>
           <span *ngIf="!company.is_active">
             <mat-icon>cancel</mat-icon>
