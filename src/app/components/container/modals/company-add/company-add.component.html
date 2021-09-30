@@ -6,7 +6,7 @@
 </div>
 
 <div class="margin" [@ngIfAnimation] AppScrollTo
-  *ngIf="companyName?.valid && companyAddress?.valid && companyPhone?.valid">
+  *ngIf="companyName?.valid && companyAddress?.valid && companyPhone?.valid && user.role == 'ADMIN'">
   <h1>Agence affiliée</h1>
   <app-agency-select-list [parentForm]="companyForm" controlName="agencyId"></app-agency-select-list>
 </div>

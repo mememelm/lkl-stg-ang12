@@ -1,3 +1,4 @@
+import { User } from './../../../../constants/models/user';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Company } from './../../../../constants/models/company';
 import { EndPoints } from './../../../../constants/classes/endpoints';
@@ -16,6 +17,7 @@ export class CompanyAddComponent implements OnInit {
 
   companyForm!: FormGroup
   userForm!: FormGroup
+  user!: User
 
   constructor(
     public ctrl: ControllerService,
@@ -55,6 +57,7 @@ export class CompanyAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.ctrl.storage.user()
     this.initCompany()
     this.initUser()
   }
@@ -65,7 +68,10 @@ export class CompanyAddComponent implements OnInit {
       address: ['', [Validators.required, Validators.minLength(4)]],
       phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(10)]],
       is_active: [1],
-      agencyId: ['', Validators.required]
+      agencyId: [
+        this.user.role == 'ADMIN' ? '' : this.user.agencyId,
+        Validators.required
+      ]
     })
   }
 

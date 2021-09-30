@@ -1,6 +1,6 @@
+import { User } from './../../constants/models/user';
 import { CompanyDetailsComponent } from './../../components/container/modals/company-details/company-details.component';
 import { DeleteConfirmationComponent } from './../../components/shared/modals/delete-confirmation/delete-confirmation.component';
-import { Agency } from './../../constants/models/agency';
 import { CompanyAddComponent } from './../../components/container/modals/company-add/company-add.component';
 import { EndPoints } from './../../constants/classes/endpoints';
 import { frenchDataTable } from './../../constants/languages/french-datatable';
@@ -23,10 +23,23 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
   dtOptions: DataTables.Settings = {}
   dtTrigger = new Subject<any>()
   listCompany: Company[] = []
+  initEndpoint!: string
 
   constructor(public ctrl: ControllerService) { }
 
   ngOnInit(): void {
+    const user: User = this.ctrl.storage.user()
+    switch (user.role) {
+      case 'ADMIN':
+        this.initEndpoint = EndPoints.COMPANY_GET
+        break
+      case 'AGENCY':
+        this.initEndpoint = EndPoints.COMPANY_BY_AGENCY + user.agencyId
+        break
+      default:
+        break
+    }
+
     this.dtOptions = {
       language: frenchDataTable,
       pagingType: 'full_numbers',
@@ -36,7 +49,7 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
       ],
       order: [[0, 'asc']]
     }
-    this.loadCompany()
+    this.loadCompany(this.initEndpoint)
   }
 
   ngOnChanges(): void {
@@ -47,8 +60,8 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
     this.dtTrigger.unsubscribe()
   }
 
-  loadCompany() {
-    this.ctrl.api.get(EndPoints.COMPANY_GET).subscribe((company: Company[]) => {
+  loadCompany(endpoint: string) {
+    this.ctrl.api.get(endpoint).subscribe((company: Company[]) => {
       this.listCompany = company
       this.dtTrigger.next()
     })
@@ -57,7 +70,7 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
   loadChange() {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy()
-      this.loadCompany()
+      this.loadCompany(this.initEndpoint)
     })
   }
 

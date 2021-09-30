@@ -10,4 +10,5 @@ export class EndPoints {
   public static COMPANY_GET = 'company/get/'
   public static COMPANY_UPDATE = 'company/update/'
   public static COMPANY_DELETE = 'company/delete/'
+  public static COMPANY_BY_AGENCY = 'company/by-agency/'
 }
