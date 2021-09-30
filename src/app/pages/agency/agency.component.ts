@@ -68,13 +68,13 @@ export class AgencyComponent implements OnInit, OnDestroy, OnChanges {
     })
   }
 
-  openDeleteAgency(agenceId: number, agenceName: string) {
+  openDelete(id: number, name: string) {
     this.ctrl.storage.removeAction()
     this.ctrl.modal.open(DeleteConfirmationComponent, {
       data: {
-        id: agenceId,
+        id: id,
         component: 'agency',
-        title: 'Suppression de l\'agence ' + agenceName
+        title: 'Suppression de l\'agence ' + name
       }
     }).afterClosed().subscribe(() => {
       if (this.ctrl.storage.action()) this.loadChange()

@@ -28,10 +28,10 @@
           </span>
         </td>
         <td class="container-action">
-          <button mat-flat-button>
+          <button mat-flat-button (click)="openDetailCompany(company)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button class="delete" mat-flat-button>
+          <button class="delete" mat-flat-button (click)="openDelete(company.id, company.name)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

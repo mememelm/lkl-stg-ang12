@@ -61,10 +61,10 @@ export class AgencyAddComponent implements OnInit {
   }
 
   addAgency() {
-    this.ctrl.api.post(EndPoints.USER_EXIST, {
-      email: this.email?.value,
-      username: this.username?.value
-    }).subscribe(res => {
+    this.ctrl.api.get(EndPoints.USER_EXIST, [
+      ['email', this.email?.value],
+      ['username', this.username?.value]
+    ]).subscribe(res => {
       res.length > 0 ? this.ctrl.alert.open("Le nom d'utilisateur ou l'email est déjà assigné à un utilisateur.") : this.postAgency()
     })
   }

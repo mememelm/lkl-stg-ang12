@@ -1,3 +1,6 @@
+import { CompanyDetailsComponent } from './../../components/container/modals/company-details/company-details.component';
+import { DeleteConfirmationComponent } from './../../components/shared/modals/delete-confirmation/delete-confirmation.component';
+import { Agency } from './../../constants/models/agency';
 import { CompanyAddComponent } from './../../components/container/modals/company-add/company-add.component';
 import { EndPoints } from './../../constants/classes/endpoints';
 import { frenchDataTable } from './../../constants/languages/french-datatable';
@@ -61,6 +64,28 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
   openAddCompany(): void {
     this.ctrl.storage.removeAction()
     this.ctrl.modal.open(CompanyAddComponent, { panelClass: 'width-dialog' }).afterClosed().subscribe(() => {
+      if (this.ctrl.storage.action()) this.loadChange()
+    })
+  }
+
+  openDelete(id: number, name: string) {
+    this.ctrl.storage.removeAction()
+    this.ctrl.modal.open(DeleteConfirmationComponent, {
+      data: {
+        id: id,
+        component: 'company',
+        title: 'Suppression de la compagnie ' + name
+      }
+    }).afterClosed().subscribe(() => {
+      if (this.ctrl.storage.action()) this.loadChange()
+    })
+  }
+
+  openDetailCompany(company: Company) {
+    this.ctrl.storage.removeAction()
+    this.ctrl.modal.open(CompanyDetailsComponent, {
+      data: { id: company.id, company: company }
+    }).afterClosed().subscribe(() => {
       if (this.ctrl.storage.action()) this.loadChange()
     })
   }

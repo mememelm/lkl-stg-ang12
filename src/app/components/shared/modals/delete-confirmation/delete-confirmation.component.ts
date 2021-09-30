@@ -33,7 +33,9 @@ export class DeleteConfirmationComponent implements OnInit {
       case 'agency':
         this.delete(EndPoints.AGENCY_DELETE, 'agence')
         break
-
+      case 'company':
+        this.delete(EndPoints.COMPANY_DELETE, 'compagnie')
+        break
       default:
         break
     }

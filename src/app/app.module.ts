@@ -45,6 +45,7 @@ import { AgencyAddComponent } from './components/container/modals/agency-add/age
 import { UserAddComponent } from './components/container/user-add/user-add.component';
 import { CompanyAddComponent } from './components/container/modals/company-add/company-add.component';
 import { AgencySelectListComponent } from './components/container/agency-select-list/agency-select-list.component';
+import { CompanyDetailsComponent } from './components/container/modals/company-details/company-details.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { AgencySelectListComponent } from './components/container/agency-select-
     AgencyAddComponent,
     UserAddComponent,
     CompanyAddComponent,
-    AgencySelectListComponent
+    AgencySelectListComponent,
+    CompanyDetailsComponent
   ],
   imports: [
     BrowserModule,
