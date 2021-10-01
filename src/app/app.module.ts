@@ -43,9 +43,10 @@ import { DeleteConfirmationComponent } from './components/shared/modals/delete-c
 import { ErrorModalComponent } from './components/shared/modals/error-modal/error-modal.component';
 import { AgencyAddComponent } from './components/container/modals/agency-add/agency-add.component';
 import { UserAddComponent } from './components/container/user-add/user-add.component';
-import { CompanyAddComponent } from './components/container/modals/company-add/company-add.component';
 import { AgencySelectListComponent } from './components/container/agency-select-list/agency-select-list.component';
-import { CompanyDetailsComponent } from './components/container/modals/company-details/company-details.component';
+import { CompanySelectListComponent } from './components/container/company-select-list/company-select-list.component';
+import { VehicleActionComponent } from './components/container/modals/vehicle-action/vehicle-action.component';
+import { CompanyActionComponent } from './components/container/modals/company-action/company-action.component';
 
 @NgModule({
   declarations: [
@@ -68,9 +69,10 @@ import { CompanyDetailsComponent } from './components/container/modals/company-d
     ErrorModalComponent,
     AgencyAddComponent,
     UserAddComponent,
-    CompanyAddComponent,
     AgencySelectListComponent,
-    CompanyDetailsComponent
+    CompanySelectListComponent,
+    VehicleActionComponent,
+    CompanyActionComponent
   ],
   imports: [
     BrowserModule,

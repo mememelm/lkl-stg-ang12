@@ -1,0 +1,22 @@
+<h1>Information véhicule</h1>
+<div [formGroup]="vehicleForm">
+  <input type="text" placeholder="Immatriculation" class="input-field" formControlName='registration'> <br>
+  <select class="input-select" required formControlName="category">
+    <option value="" disabled selected hidden>Choisir la catégorie</option>
+    <option *ngFor="let category of listCategory" [value]="category.value">{{category.display}}</option>
+  </select>
+  <select class="input-select" required formControlName="place">
+    <option value="" disabled selected hidden>Choisir le nombre de places</option>
+    <option *ngFor="let place of listPlace" [value]="place.value">{{place.value}}</option>
+  </select> <br>
+  <input type="text" placeholder="Marque" class="input-field" formControlName='brand'>
+  <input type="text" placeholder="Modèle" class="input-field" formControlName='model'> <br>
+  <app-company-select-list *ngIf="user.role != 'COMPANY'" [parentForm]="vehicleForm" controlName="companyId">
+  </app-company-select-list>
+</div>
+
+<div mat-dialog-actions *ngIf="vehicleForm.valid" [@ngIfAnimation] AppScrollTo>
+  <button mat-flat-button color="primary" (click)="addVehicle()">Ajouter</button>
+  <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
+</div>
+

@@ -17,9 +17,9 @@ export class SideMenuComponent implements OnInit {
     { title: 'Dashboard', icon: 'dashboard', page: 'dashboard', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
     { title: 'Agences', icon: 'house', page: 'agency', read: ['ADMIN'] },
     { title: 'Compagnies', icon: 'maps_home_work', page: 'company', read: ['ADMIN', 'AGENCY'] },
+    { title: 'Véhicules', icon: 'local_shipping', page: 'vehicle', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
     { title: 'Itinéraires', icon: 'edit_road', page: 'itinerary', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
     { title: 'Villes', icon: 'location_on', page: 'city', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
-    { title: 'Véhicules', icon: 'local_shipping', page: 'vehicle', read: ['ADMIN', 'AGENCY', 'COMPANY'] },
     { title: 'Réservation', icon: 'event_seat', page: 'reservation', read: 'COMPANY' }
   ]
   constructor(public ctrl: ControllerService) { }

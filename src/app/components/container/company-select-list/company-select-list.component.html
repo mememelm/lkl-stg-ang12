@@ -1,0 +1,6 @@
+<div [formGroup]="parentForm">
+  <select class="input-select" required [formControlName]="controlName">
+    <option value="" disabled selected hidden>Choisir la compagnie affiliée</option>
+    <option *ngFor="let company of listCompany" [value]="company.id">{{ company.name }}</option>
+  </select>
+</div>

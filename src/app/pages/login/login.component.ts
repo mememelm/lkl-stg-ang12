@@ -1,9 +1,11 @@
+import { placeList } from './../../helpers/place-list';
+import { categoryList } from './../../helpers/categorie-list';
 import { ngIfAnimation } from './../../animations/ng-if-animation';
 import { User } from './../../constants/models/user';
 import { EndPoints } from '../../constants/classes/endpoints';
 import { ControllerService } from './../../services/controller.service';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +40,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('CURRENT_USER', JSON.stringify(res.user))
           localStorage.setItem('AGENCY', JSON.stringify(res.agency))
           localStorage.setItem('COMPANY', JSON.stringify(res.company))
+          localStorage.setItem('CATEGORY', JSON.stringify(categoryList))
+          localStorage.setItem('PLACE', JSON.stringify(placeList))
           this.ctrl.router.navigate([this.ctrl.routes.home])
           break
         case 'password_error':

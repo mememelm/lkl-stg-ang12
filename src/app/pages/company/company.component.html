@@ -1,6 +1,6 @@
 <section>
   <h1>Compagnies</h1>
-  <button mat-flat-button color='primary' (click)="openAddCompany()">+ Ajouter</button>
+  <button mat-flat-button color='primary' (click)="actionCompany(null)">+ Ajouter</button>
 </section>
 
 <mat-card [@ngIfAnimation] class="card-table">
@@ -28,7 +28,7 @@
           </span>
         </td>
         <td class="container-action">
-          <button mat-flat-button (click)="openDetailCompany(company)">
+          <button mat-flat-button (click)="actionCompany(company)">
             <mat-icon>edit</mat-icon>
           </button>
           <button class="delete" mat-flat-button (click)="openDelete(company.id, company.name)">

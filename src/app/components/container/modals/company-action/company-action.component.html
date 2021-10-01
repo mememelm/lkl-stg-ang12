@@ -6,13 +6,18 @@
 </div>
 
 <div class="margin" [@ngIfAnimation] AppScrollTo
-  *ngIf="companyName?.valid && companyAddress?.valid && companyPhone?.valid && ctrl.storage.user().role == 'ADMIN'">
+  *ngIf="companyName?.valid && companyAddress?.valid && companyPhone?.valid && user.role == 'ADMIN'">
   <h1>Agence affiliée</h1>
   <app-agency-select-list [parentForm]="companyForm" controlName="agencyId"></app-agency-select-list>
 </div>
 
-<div mat-dialog-actions>
-  <button mat-flat-button [@ngIfAnimation] *ngIf="companyForm.valid" class="btn-update"
-    (click)="updateCompany()">Modifier</button>
+<app-user-add [display]="companyForm.valid && action == 'add'" [userForm]="userForm"
+  userTitle="Information utilisateur assigné">
+</app-user-add>
+
+<div mat-dialog-actions *ngIf="(companyForm.valid && userForm.valid) || (companyForm.valid && action == 'update')"
+  [@ngIfAnimation] AppScrollTo>
+  <button mat-flat-button color="primary" *ngIf="action == 'add'" (click)="addCompany()">Ajouter</button>
+  <button mat-flat-button class="btn-update" *ngIf="action == 'update'" (click)="updateCompany()">Modifier</button>
   <button mat-button mat-dialog-close (click)="ctrl.storage.removeAction()">Fermer</button>
 </div>

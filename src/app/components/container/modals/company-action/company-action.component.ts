@@ -1,27 +1,34 @@
-import { User } from './../../../../constants/models/user';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ngIfAnimation } from 'src/app/animations/ng-if-animation';
 import { Company } from './../../../../constants/models/company';
 import { EndPoints } from './../../../../constants/classes/endpoints';
-import { ngIfAnimation } from './../../../../animations/ng-if-animation';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ControllerService } from './../../../../services/controller.service';
-import { FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { User } from './../../../../constants/models/user';
+import { FormGroup, AbstractControl, Validators } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+
+export interface DialogDetail {
+  id: number
+  company: Company
+}
 
 @Component({
-  selector: 'app-company-add',
-  templateUrl: './company-add.component.html',
-  styleUrls: ['./company-add.component.scss'],
+  selector: 'app-company-action',
+  templateUrl: './company-action.component.html',
+  styleUrls: ['./company-action.component.scss'],
   animations: [ngIfAnimation]
 })
-export class CompanyAddComponent implements OnInit {
+export class CompanyActionComponent implements OnInit {
 
   companyForm!: FormGroup
   userForm!: FormGroup
   user!: User
+  action = ''
 
   constructor(
     public ctrl: ControllerService,
-    private dialogRef: MatDialogRef<CompanyAddComponent>
+    @Inject(MAT_DIALOG_DATA) public data: DialogDetail,
+    private dialogRef: MatDialogRef<CompanyActionComponent>
   ) { }
 
   get companyName(): AbstractControl | null {
@@ -58,21 +65,26 @@ export class CompanyAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.ctrl.storage.user()
+    this.data.company ? this.action = 'update' : this.action = 'add'
     this.initCompany()
     this.initUser()
   }
 
   initCompany() {
     this.companyForm = this.ctrl.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      address: ['', [Validators.required, Validators.minLength(4)]],
-      phone: ['', [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(10)]],
-      is_active: [1],
+      name: [this.updateValue(this.data, 'name', ''), [Validators.required, Validators.minLength(2)]],
+      address: [this.updateValue(this.data, 'address', ''), [Validators.required, Validators.minLength(4)]],
+      phone: [this.updateValue(this.data, 'phone', ''), [Validators.required, Validators.pattern('[- +()0-9]+'), Validators.minLength(10)]],
+      is_active: [this.updateValue(this.data, 'is_active', 1)],
       agencyId: [
-        this.user.role == 'ADMIN' ? '' : this.user.agencyId,
+        this.user.role == 'ADMIN' ? this.updateValue(this.data, 'agencyId', '') : this.user.agencyId,
         Validators.required
       ]
     })
+  }
+
+  updateValue(element: any, index: any, defaultValue: string | number) {
+    return this.action == 'update' ? element.company[index] : defaultValue
   }
 
   initUser() {
@@ -117,6 +129,18 @@ export class CompanyAddComponent implements OnInit {
         this.dialogRef.close()
       }
     }, () => { this.ctrl.alert.serverError() })
+  }
+
+  updateCompany() {
+    this.ctrl.api.put(EndPoints.COMPANY_UPDATE, this.data.id, this.companyForm.value).subscribe(res => {
+      if (res.success) {
+        this.ctrl.alert.open("La compagnie n'est plus dans la base de données. Veuillez actualiser la page actuelle")
+      } else {
+        this.ctrl.storage.setAction()
+        this.ctrl.alert.updateDone()
+        this.dialogRef.close()
+      }
+    })
   }
 
 }

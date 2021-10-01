@@ -1,1 +1,45 @@
-<p>vehicle works!</p>
+<section>
+  <h1>Vehicules</h1>
+  <button mat-flat-button color='primary' (click)="actionVehicle(null)">+ Ajouter</button>
+</section>
+
+<mat-card [@ngIfAnimation] class="card-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead class="table-header">
+      <tr>
+        <th>Immatriculation</th>
+        <th>Marque</th>
+        <th>Catégorie</th>
+        <th>Nombre de place</th>
+        <th *ngIf="user.role =='ADMIN'">Compagnie</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of listVehicle">
+        <td>{{ vehicle.registration }}</td>
+        <td>{{ vehicle.brand | titlecase}} {{ vehicle.model }}</td>
+        <td>{{ vehicle.category }}</td>
+        <td>{{ vehicle.place }}</td>
+        <td *ngIf="user.role =='ADMIN'">{{ vehicle?.company?.name }}</td>
+        <td>
+          <span *ngIf="vehicle.state">
+            <mat-icon class="active-color">check_circle</mat-icon>
+          </span>
+          <span *ngIf="!vehicle.state">
+            <mat-icon class="error">cancel</mat-icon>
+          </span>
+        </td>
+        <td class="container-action">
+          <button mat-flat-button (click)="actionVehicle(vehicle)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="delete" mat-flat-button (click)="openDelete(vehicle.id, vehicle.registration)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

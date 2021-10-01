@@ -27,6 +27,14 @@ export class StorageService {
     return <string>localStorage.getItem('AC')
   }
 
+  public category() {
+    return JSON.parse(<string>localStorage.getItem('CATEGORY'))
+  }
+
+  public place() {
+    return JSON.parse(<string>localStorage.getItem('PLACE'))
+  }
+
   public setAction() {
     return localStorage.setItem('AC', '_')
   }
