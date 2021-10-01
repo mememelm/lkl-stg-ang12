@@ -1,3 +1,4 @@
+import { ngIfAnimation } from './../../../../animations/ng-if-animation';
 import { EndPoints } from './../../../../constants/classes/endpoints';
 import { Vehicle } from './../../../../constants/models/vehicle';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -14,7 +15,8 @@ export interface DialogDetail {
 @Component({
   selector: 'app-vehicle-action',
   templateUrl: './vehicle-action.component.html',
-  styleUrls: ['./vehicle-action.component.scss']
+  styleUrls: ['./vehicle-action.component.scss'],
+  animations: [ngIfAnimation]
 })
 export class VehicleActionComponent implements OnInit {
 
@@ -31,23 +33,27 @@ export class VehicleActionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data)
     this.data.vehicle ? this.action = 'update' : this.action = 'add'
-    console.log(this.action)
     this.user = this.ctrl.storage.user()
     this.listCategory = this.ctrl.storage.category()
     this.listPlace = this.ctrl.storage.place()
     this.vehicleForm = this.ctrl.fb.group({
-      registration: ['', Validators.required],
-      category: ['', Validators.required],
-      place: ['', Validators.required],
-      brand: ['', Validators.required],
-      model: ['', Validators.required],
-      state: [1],
+      registration: [this.updateValue(this.data, 'registration', ''), Validators.required],
+      category: [this.updateValue(this.data, 'category', ''), Validators.required],
+      place: [this.updateValue(this.data, 'place', ''), Validators.required],
+      brand: [this.updateValue(this.data, 'brand', ''), Validators.required],
+      model: [this.updateValue(this.data, 'model', ''), Validators.required],
+      state: [this.updateValue(this.data, 'state', 1)],
       companyId: [
-        this.user.role == 'COMPANY' ? this.user.companyId : '',
+        this.user.role == 'COMPANY' ? this.user.companyId : this.updateValue(this.data, 'companyId', ''),
         Validators.required
       ]
     })
+  }
+
+  updateValue(element: any, index: any, defaultValue: string | number) {
+    return this.action == 'update' ? element.vehicle[index] : defaultValue
   }
 
   addVehicle() {
@@ -58,5 +64,17 @@ export class VehicleActionComponent implements OnInit {
         this.dialogRef.close()
       }
     }, () => { this.ctrl.alert.serverError() })
+  }
+
+  updateVehicle() {
+    this.ctrl.api.put(EndPoints.VEHICLE_UPDATE, this.data.id, this.vehicleForm.value).subscribe(res => {
+      if (res.success) {
+        this.ctrl.alert.open("Le véhicule n'est plus dans la base de données. Veuillez actualiser la page actuelle")
+      } else {
+        this.ctrl.storage.setAction()
+        this.ctrl.alert.updateDone()
+        this.dialogRef.close()
+      }
+    })
   }
 }

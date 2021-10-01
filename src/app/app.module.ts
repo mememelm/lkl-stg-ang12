@@ -24,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatExpansionModule } from '@angular/material/expansion'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -94,6 +95,7 @@ import { CompanyActionComponent } from './components/container/modals/company-ac
     MatCardModule,
     MatDialogModule,
     MatExpansionModule,
+    MatSlideToggleModule,
     BackButtonDisableModule.forRoot({ preserveScrollPosition: true })
   ],
   providers: [

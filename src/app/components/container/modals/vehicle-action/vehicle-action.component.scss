@@ -1,0 +1,10 @@
+.swticher-container {
+  display: inline-flex;
+  margin-left: 15px;
+
+  mat-slide-toggle {
+    margin-top: -3px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
