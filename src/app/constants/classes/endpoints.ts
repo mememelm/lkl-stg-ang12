@@ -16,4 +16,8 @@ export class EndPoints {
   public static VEHICLE_UPDATE = 'vehicle/update/'
   public static VEHICLE_DELETE = 'vehicle/delete/'
   public static VEHICLE_BY_COMPANY = 'vehicle/by-company/'
+  public static PRICING_ADD = 'pricing/add/'
+  public static PRICING_GET = 'pricing/get/'
+  public static PRICING_UPDATE = 'pricing/update/'
+  public static PRICING_DELETE = 'pricing/delete/'
 }

@@ -33,7 +33,6 @@ export class VehicleActionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
     this.data.vehicle ? this.action = 'update' : this.action = 'add'
     this.user = this.ctrl.storage.user()
     this.listCategory = this.ctrl.storage.category()

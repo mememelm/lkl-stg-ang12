@@ -49,6 +49,7 @@ import { CompanySelectListComponent } from './components/container/company-selec
 import { VehicleActionComponent } from './components/container/modals/vehicle-action/vehicle-action.component';
 import { CompanyActionComponent } from './components/container/modals/company-action/company-action.component';
 import { PricingComponent } from './pages/pricing/pricing.component';
+import { PricingActionComponent } from './components/container/modals/pricing-action/pricing-action.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { PricingComponent } from './pages/pricing/pricing.component';
     CompanySelectListComponent,
     VehicleActionComponent,
     CompanyActionComponent,
-    PricingComponent
+    PricingComponent,
+    PricingActionComponent
   ],
   imports: [
     BrowserModule,
