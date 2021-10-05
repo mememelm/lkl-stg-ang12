@@ -48,6 +48,7 @@ import { AgencySelectListComponent } from './components/container/agency-select-
 import { CompanySelectListComponent } from './components/container/company-select-list/company-select-list.component';
 import { VehicleActionComponent } from './components/container/modals/vehicle-action/vehicle-action.component';
 import { CompanyActionComponent } from './components/container/modals/company-action/company-action.component';
+import { PricingComponent } from './pages/pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CompanyActionComponent } from './components/container/modals/company-ac
     AgencySelectListComponent,
     CompanySelectListComponent,
     VehicleActionComponent,
-    CompanyActionComponent
+    CompanyActionComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,
