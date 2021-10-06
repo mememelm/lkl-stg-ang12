@@ -39,6 +39,9 @@ export class DeleteConfirmationComponent implements OnInit {
       case 'vehicle':
         this.delete(EndPoints.VEHICLE_DELETE, 'véhicule')
         break
+      case 'pricing':
+        this.delete(EndPoints.PRICING_DELETE, 'majoration')
+        break
       default:
         break
     }

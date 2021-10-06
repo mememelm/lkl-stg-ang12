@@ -1,7 +1,7 @@
 <h1>Information tarif</h1>
 <div [formGroup]="priceForm">
   <input type="text" placeholder="Description" class="input-field" formControlName='description'>
-  <input type="number" placeholder="Prix" class="input-field" formControlName='price'>
+  <input type="number" placeholder="Majoration en %" class="input-field" formControlName='increased_price'>
 </div>
 
 <div mat-dialog-actions *ngIf="priceForm.valid" [@ngIfAnimation] AppScrollTo>

@@ -35,13 +35,14 @@ export class PricingActionComponent implements OnInit {
     this.user = this.ctrl.storage.user()
     this.priceForm = this.ctrl.fb.group({
       description: [this.updateValue(this.data, 'description', ''), Validators.required],
-      price: [this.updateValue(this.data, 'description', 0), Validators.required],
-      companyId: [this.user.companyId]
+      increased_price: [this.updateValue(this.data, 'increased_price', 0), Validators.required],
+      companyId: [this.user.companyId],
+      agencyId: [this.user.agencyId]
     })
   }
 
   updateValue(element: any, index: any, defaultValue: string | number) {
-    return this.action == 'update' ? element.vehicle[index] : defaultValue
+    return this.action == 'update' ? element.price[index] : defaultValue
   }
 
   addPricing() {

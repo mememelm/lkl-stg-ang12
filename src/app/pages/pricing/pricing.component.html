@@ -1,5 +1,34 @@
 <section>
   <h1>Mes tarifs</h1>
-  <button mat-flat-button color='primary' *ngIf="user.role == 'COMPANY'">+ Ajouter</button>
+  <button mat-flat-button color='primary' *ngIf="user.role == 'COMPANY'" (click)="actionPricing()">+ Ajouter</button>
 </section>
 
+<mat-card [@ngIfAnimation] class="card-table">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead class="table-header">
+      <tr>
+        <th>Description</th>
+        <th>Majoration (en %)</th>
+        <th *ngIf="user.role == 'ADMIN'">Agence</th>
+        <th *ngIf="user.role == 'ADMIN'">Compagnie</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let price of listPricing">
+        <td>{{ price.description }}</td>
+        <td>{{ price.increased_price }} %</td>
+        <td *ngIf="user.role == 'ADMIN'">{{ price.agency.name }}</td>
+        <td *ngIf="user.role == 'ADMIN'">{{ price.company.name }}</td>
+        <td class="container-action">
+          <button mat-flat-button (click)="actionPricing(price)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="delete" mat-flat-button (click)="openDelete(price.id, price.description)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

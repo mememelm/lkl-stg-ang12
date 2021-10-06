@@ -20,4 +20,6 @@ export class EndPoints {
   public static PRICING_GET = 'pricing/get/'
   public static PRICING_UPDATE = 'pricing/update/'
   public static PRICING_DELETE = 'pricing/delete/'
+  public static PRICING_BY_COMPANY = 'pricing/by-company/'
+  public static PRICING_BY_AGENCY = 'pricing/by-agency/'
 }

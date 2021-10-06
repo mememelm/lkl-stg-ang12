@@ -76,7 +76,7 @@ export class VehicleComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
-  actionVehicle(vehicle: Vehicle | any) {
+  actionVehicle(vehicle: Vehicle | null = null) {
     this.ctrl.storage.removeAction()
     this.ctrl.modal.open(VehicleActionComponent, {
       data: { id: vehicle?.id, vehicle: vehicle }

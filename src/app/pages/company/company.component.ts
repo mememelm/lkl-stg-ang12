@@ -73,7 +73,7 @@ export class CompanyComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
-  actionCompany(company: Company | any) {
+  actionCompany(company: Company | null = null) {
     this.ctrl.storage.removeAction()
     this.ctrl.modal.open(CompanyActionComponent, {
       data: { id: company?.id, company: company }
